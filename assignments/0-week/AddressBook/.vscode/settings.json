@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Desktop\\peralta\\cis27\\assignments\\0-week\\Person\\Person.jar",
+        "c:\\Users\\Ryan\\OneDrive\\Desktop\\peralta\\cis27\\assignments\\0-week\\StudentsAndEmployees\\StudentsAndEmployees.jar"
+    ]
+}
