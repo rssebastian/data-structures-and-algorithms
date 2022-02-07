@@ -17,11 +17,15 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             System.out.println("List is Empty");
         }
         DoubleNode<Item> current = head;
-        while (current.getNext() != null) {
-            System.out.print(current.item + " -> ");
+        while (current != null) {
+            if (current.getNext() == null) {
+                System.out.print(current.getItem());
+            } else {
+                System.out.print(current.getItem() + " -> ");
+            }
             current = current.getNext();
         }
-        System.out.println("null");
+        System.out.println();
     }
 
     public void addToHead(Item item) {
@@ -30,6 +34,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             head = tail = newNode;
         } else {
             head.setPrev(newNode);
+            newNode.setNext(head);
             head = newNode;
         }
         System.out.println(item + " has been added as the head!");
@@ -41,6 +46,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
             tail = head = newNode;
         } else {
             tail.setNext(newNode);
+            newNode.setPrev(tail);
             tail = newNode;
         }
         System.out.println(item + " has been added to the tail!");
@@ -145,7 +151,7 @@ public class DoublyLinkedList<Item> implements Iterable<Item> {
 
     private DoubleNode<Item> find(Item item) {
         DoubleNode<Item> current = head;
-        while (current.getItem() != null) {
+        while (current != null) {
             if (current.getItem().equals(item)) {
                 return current;
             } else {
