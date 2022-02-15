@@ -19,19 +19,18 @@ public class ArithmeticExpressionEvaluator {
         ArithmeticExpressionEvaluator evaluator = new ArithmeticExpressionEvaluator();
         InfixToPostfix postfix = evaluator.new InfixToPostfix(infix);
         System.out.println(postfix.postfixStr);
+        EvaluatePostfix value = evaluator.new EvaluatePostfix(postfix.postfixStr);
+        System.out.println(value.expressionValue);
 
     }
 
     private class InfixToPostfix {
-        private int stackSize;
-        private String[] infixArr;
         private Node stackHead;
         private String postfixStr = "";
 
         private InfixToPostfix(String infix) {
-            infixArr = infix.split(" ");
 
-            for (String item : infixArr) {
+            for (String item : infix.split(" ")) {
                 switch (item) {
                     case "(":
                         push(item);
@@ -71,7 +70,6 @@ public class ArithmeticExpressionEvaluator {
                 stackHead = newNode;
                 newNode.next = oldHead;
             }
-            stackSize++;
         }
 
         private void pop() {
@@ -80,7 +78,6 @@ public class ArithmeticExpressionEvaluator {
             if (!item.equals("(")) {
                 postfixStr += item + " ";
             }
-            stackSize--;
         }
 
         private boolean isEmpty() {
@@ -110,5 +107,67 @@ public class ArithmeticExpressionEvaluator {
                     return 0;
             }
         }
+    }
+
+    private class EvaluatePostfix {
+        private Node stackHead;
+        private double expressionValue;
+
+        private EvaluatePostfix(String postfix) {
+            for (String item : postfix.split(" ")) {
+                switch (item) {
+                    case "^", "*", "/", "+", "-":
+                        double operand2 = pop();
+                        double operand1 = pop();
+                        switch (item) {
+                            case "^":
+                                push(String.valueOf(Math.pow(operand1, operand2)));
+                                break;
+                            case "*":
+                                push(String.valueOf(operand1 * operand2));
+                                break;
+                            case "/":
+                                push(String.valueOf(operand1 / operand2));
+                                break;
+                            case "+":
+                                push(String.valueOf(operand1 + operand2));
+                                break;
+                            case "-":
+                                push(String.valueOf(operand1 - operand2));
+                                break;
+                        }
+                        break;
+                    default:
+                        push(item);
+                }
+            }
+            expressionValue = pop();
+        }
+
+        private void push(String item) {
+            Node newNode = new Node(item);
+            if (stackHead == null) {
+                stackHead = newNode;
+            } else {
+                newNode.next = stackHead;
+                stackHead = newNode;
+            }
+        }
+
+        private double pop() {
+            double item = stackHead.item;
+            stackHead = stackHead.next;
+            return item;
+        }
+
+        private class Node {
+            private double item;
+            private Node next;
+
+            private Node(String item) {
+                this.item = Double.valueOf(item);
+            }
+        }
+
     }
 }
