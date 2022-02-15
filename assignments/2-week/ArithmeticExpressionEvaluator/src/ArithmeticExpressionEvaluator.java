@@ -1,17 +1,17 @@
-// The input arithmetic expression can be separated by spaces so it can just be a string like "( 14 + 8 )"
-// i.e. ( 14 + 8 ) * ( 8 - 4 ) / ( ( 6 - 2 * 2 ) * ( 1 + 2 ) )
-// Create a linked-list stack that can hold all the elements of the infix expression
-// Iterate over infix.split(" ")
-// If char == (, push it in stack
-// If char == ), pop until ( is popped
-// If char == #, push it in stack
-// If char == operator, pop until element of lower precedence is reached
-// Convert it to a postfix expression like "14 8 + 8 4 - * 6 2 2 * – 1 2 + * /"
-// then evaluate it
-
 public class ArithmeticExpressionEvaluator {
     public static void main(String[] args) {
-        evaluate("( 14 + 8 ) * ( 8 - 4 ) / ( ( 6 - 2 * 2 ) * ( 1 + 2 ) )");
+        String testCase1 = "( 14 + 8 ) * ( 8 - 4 ) / ( ( 6 - 2 * 2 ) * ( 1 + 2 ) )";
+        evaluate(testCase1);
+        System.out.println("Test Case 1 should equal: " + Double.valueOf((double) 88 / 6));
+
+        String testCase2 = "( 6 - 9 ) * ( 4 + 1 ) + 2 * ( 5 + 4 ) - 9 / 3 * 4 ";
+        evaluate(testCase2);
+        System.out.println("Test Case 2 should equal: " + (-9.0));
+
+        String testCase3 = "( 1 * 2 ) * 2 ^ 4 + 2 / ( 2 + 6 ) - 0 / 3 + 4 ";
+        evaluate(testCase3);
+        System.out.println(
+                "Test Case 3 should equal: " + Double.valueOf(36 + ((double) 2 / 8)));
     }
 
     public static void evaluate(String infix) {
