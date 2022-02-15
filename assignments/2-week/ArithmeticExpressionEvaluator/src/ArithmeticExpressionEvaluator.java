@@ -171,3 +171,17 @@ public class ArithmeticExpressionEvaluator {
 
     }
 }
+
+// TEST CASE OUTPUT
+// ( 14 + 8 ) * ( 8 - 4 ) / ( ( 6 - 2 * 2 ) * ( 1 + 2 ) )
+// 14 8 + 8 4 - * 6 2 2 * - 1 2 + * /
+// 14.666666666666666
+// Test Case 1 should equal: 14.666666666666666
+// ( 6 - 9 ) * ( 4 + 1 ) + 2 * ( 5 + 4 ) - 9 / 3 * 4
+// 6 9 - 4 1 + * 2 5 4 + * + 9 3 / 4 * -
+// -9.0
+// Test Case 2 should equal: -9.0
+// ( 1 * 2 ) * 2 ^ 4 + 2 / ( 2 + 6 ) - 0 / 3 + 4
+// 1 2 * 2 4 ^ * 2 2 6 + / + 0 3 / - 4 +
+// 36.25
+// Test Case 3 should equal: 36.25
